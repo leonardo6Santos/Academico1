@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+{% block content %}
+<h2 class="mb-4">Ocorrências / Advertências </h2>
+<div class="row">
+    {% for oc in ocorrencias %}
+    <div class="col-md-6 mb-3">
+        <div class="card border-danger">
+            <div class="card-body">
+                <h5 class="card-title">{{ oc.pessoa.nome }} - {{ oc.data|date:"d/m/Y" }}</h5>
+                <p class="card-text">{{ oc.descricao }}</p>
+                <footer class="blockquote-footer">Curso: {{ oc.curso.nome }} | Disciplina: {{ oc.disciplina.nome }}</footer>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

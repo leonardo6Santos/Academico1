@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+{% block content %}
+<h2 class="mb-4">Instituições de Ensino </h2>
+<table class="table table-hover">
+    <tbody>
+        {% for inst in instituicoes %}
+        <tr class="table-info">
+            <td>
+                <strong>{{ inst.nome }}</strong><br>
+                <small>Site: {{ inst.site }} | Telefone: {{ inst.telefone }} | Cidade: {{ inst.cidade.nome }}</small>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

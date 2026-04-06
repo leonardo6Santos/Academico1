@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+{% block content %}
+<h2 class="mb-4">Gerenciamento de Cursos </h2>
+<table class="table table-bordered">
+    <thead class="thead-light">
+        <tr>
+            <th>Nome do Curso</th>
+            <th>Carga Horária</th>
+            <th>Duração (Meses)</th>
+            <th>Área</th>
+            <th>Instituição</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for curso in cursos %}
+        <tr>
+            <td>{{ curso.nome }}</td>
+            <td>{{ curso.carga_horaria_total }}h</td>
+            <td>{{ curso.duracao_meses }}</td>
+            <td>{{ curso.area_saber.nome }}</td>
+            <td>{{ curso.instituicao_ensino.nome }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

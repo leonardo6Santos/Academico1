@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Acadêmico</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="{% url 'index' %}">Acadêmico</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link text-white" href="{% url 'index' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="{% url 'lista_pessoas' %}">Pessoas </a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="{% url 'lista_cursos' %}">Cursos </a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="{% url 'lista_instituicoes' %}">Instituições </a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="{% url 'lista_cidades' %}">Cidades </a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="{% url 'lista_ocorrencias' %}">Ocorrências </a></li>
+                <li class="nav-item"><a class="nav-link btn btn-warning text-dark ml-2" href="/admin/">Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        {% block content %}
+        <div class="jumbotron text-center">
+            <h1 class="display-4">Olá, bem-vindo!</h1>
+            <p class="lead">Sistema Acadêmico - Campus Muzambinho</p>
+        </div>
+        {% endblock %}
+    </div>
+</body>
+</html>
