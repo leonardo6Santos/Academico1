@@ -56,31 +56,25 @@ initial-scale=1.0">
         </div>
     </nav>
     <div class="container mt-5">
-        <h2 class="mb-4">Tabela de Pessoas</h2>
+        <h2 class="mb-4">Tabela de Ocorrências</h2>
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Nome do Pai</th>
-                    <th scope="col">Nome da Mãe</th>
-                    <th scope="col">CPF</th>
-                    <th scope="col">Data de Nascimento</th>
-                    <th scope="col">E-mail</th>
-                    <th scope="col">Cidade</th>
-                    <th scope="col">Ocupação</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Curso</th>
+                    <th scope="col">Disciplina</th>
+                    <th scope="col">Pessoa</th>
                 </tr>
             </thead>
             <tbody>
-                {% for pessoas in pessoas %}
+                {% for ocorrencias in ocorrencias %}
                 <tr>
-                    <td>{{ pessoas.nome }}</td>
-                    <td>{{ pessoas.nome_do_pai }}</td>
-                    <td>{{ pessoas.nome_da_mae }}</td>
-                    <td>{{ pessoas.cpf }} </td>
-                    <td>{{ pessoas.data_nasc }}</td>
-                    <td>{{ pessoas.email }}</td>
-                    <td>{{ pessoas.cidade }}</td>
-                    <td>{{ pessoas.ocupacao }}</td>
+                    <td>{{ ocorrencias.descricao }}</td>
+                    <td>{{ ocorrencias.data }}</td>
+                    <td>{{ ocorrencias.curso }}</td>
+                    <td>{{ ocorrencias.disciplina }}</td>
+                    <td>{{ ocorrencias.pessoa }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

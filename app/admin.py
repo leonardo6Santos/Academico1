@@ -1,8 +1,6 @@
 from django.contrib import admin
 from .models import *
 
-
-
 class PessoaInline(admin.TabularInline):
     model = Pessoa
     extra = 1
@@ -11,60 +9,69 @@ class CursoInline(admin.TabularInline):
     model = Curso
     extra = 1
 
-class CursoDisciplinaInline(admin.TabularInline):
-    model = CursoDisciplina
+class DisciplinaInline(admin.TabularInline):
+    model = Disciplina
     extra = 1
 
 class AvaliacaoInline(admin.TabularInline):
     model = Avaliacao
     extra = 1
 
-class MatriculaInline(admin.TabularInline):
-    model = Matricula
+class AlunoInline(admin.TabularInline):
+    model = Aluno
     extra = 1
 
-class FrequenciaInline(admin.TabularInline):
-    model = Frequencia
+class CidadeInline(admin.TabularInline):
+    model = Cidade
     extra = 1
 
-
-@admin.register(Ocupacao)
 class OcupacaoAdmin(admin.ModelAdmin):
- 
+    list_display = ('nome',)
+    search_fields = ('nome',)
     inlines = [PessoaInline]
 
-@admin.register(InstituicaoEnsino)
-class InstituicaoEnsinoAdmin(admin.ModelAdmin):
-
+class InstituicaoAdmin(admin.ModelAdmin):
+    list_display = ('nome',)
+    search_fields = ('nome',)
     inlines = [CursoInline]
 
-@admin.register(AreaSaber)
-class AreaSaberAdmin(admin.ModelAdmin):
-   
+class AreaAdmin(admin.ModelAdmin):
+    list_display = ('nome',)
+    search_fields = ('nome',)
     inlines = [CursoInline]
 
-@admin.register(Curso)
 class CursoAdmin(admin.ModelAdmin):
-   
-    inlines = [CursoDisciplinaInline, AvaliacaoInline]
+    list_display = ('nome',)
+    search_fields = ('nome',)
+    inlines = [DisciplinaInline]
 
-@admin.register(Disciplina)
 class DisciplinaAdmin(admin.ModelAdmin):
-   
+    list_display = ('nome',)
+    search_fields = ('nome',)
     inlines = [AvaliacaoInline]
 
-@admin.register(Pessoa)
-class PessoaAdmin(admin.ModelAdmin):
-   
-    inlines = [MatriculaInline, FrequenciaInline]
+class TurmaAdmin(admin.ModelAdmin):
+    list_display = ('nome',)
+    search_fields = ('nome',)
+    inlines = [AlunoInline]
 
+class UfAdmin(admin.ModelAdmin):
+    list_display = ('nome',)
+    search_fields = ('nome',)
+    inlines = [CidadeInline]
 
-admin.site.register(Turma) 
-admin.site.register(Cidade)
-admin.site.register(Turno)
-admin.site.register(AvaliacaoTipo)
-admin.site.register(Ocorrencia)
+admin.site.register(Pessoa)
+admin.site.register(Ocupacao, OcupacaoAdmin)
+admin.site.register(Instituicao, InstituicaoAdmin)
+admin.site.register(Area_Saber, AreaAdmin)
+admin.site.register(Curso, CursoAdmin)
+admin.site.register(Periodo)
+admin.site.register(Disciplina, DisciplinaAdmin)
 admin.site.register(Matricula)
-admin.site.register(Frequencia)
-admin.site.register(CursoDisciplina)
 admin.site.register(Avaliacao)
+admin.site.register(Frequencia)
+admin.site.register(Turma, TurmaAdmin)
+admin.site.register(Cidade)
+admin.site.register(Ocorrencia)
+admin.site.register(Uf, UfAdmin)
+admin.site.register(Aluno)

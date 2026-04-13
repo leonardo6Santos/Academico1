@@ -1,30 +1,62 @@
-from django.shortcuts import render
-from .models import Pessoa, Curso, InstituicaoEnsino, Cidade, Ocorrencia
+from django.shortcuts import render,redirect,get_object_or_404
+from .models import *
+from django.views import View
+from django.contrib import messages
 
-def index(request):
-    return render(request, 'index.html')
-
-def lista_pessoas(request):
+class IndexView(View):
+    def get(self, request, *args, **kwargs):
+        cursos = Curso.objects.all()
+        return render(request, 'index.html', {'cursos': cursos,})
     
-    context = {'pessoas': Pessoa.objects.all()}
-    return render(request, 'pessoas.html', context)
-
-def lista_cursos(request):
+class PessoasView(View):
+    def get(self, request, *args, **kwargs):
+        pessoas = Pessoa.objects.all()
+        return render(request, 'pessoas.html', {'pessoas': pessoas,})
     
-    context = {'cursos': Curso.objects.all()}
-    return render(request, 'cursos.html', context)
+class CursosView(View):
+    def get(self, request, *args, **kwargs):
+        cursos = Curso.objects.all()
+        return render(request, 'cursos.html', {'cursos': cursos,})
 
-def lista_instituicoes(request):
+class InstituicoesView(View):
+    def get(self, request, *args, **kwargs):
+        instituicoes = Instituicao.objects.all()
+        return render(request, 'instituicoes.html', {'instituicoes': instituicoes,})
+
+class AreasView(View):
+    def get(self, request, *args, **kwargs):
+        areas = Area_Saber.objects.all()
+        return render(request, 'areas.html', {'areas': areas,})
+
+class DisciplinasView(View):
+    def get(self, request, *args, **kwargs):
+        disciplinas = Disciplina.objects.all()
+        return render(request, 'disciplinas.html', {'disciplinas': disciplinas,})
     
-    context = {'instituicoes': InstituicaoEnsino.objects.all()}
-    return render(request, 'instituicoes.html', context)
+class MatriculasView(View):
+    def get(self, request, *args, **kwargs):
+        matriculas = Matricula.objects.all()
+        return render(request, 'matriculas.html', {'matriculas': matriculas,})
+    
+class FrequenciasView(View):
+    def get(self, request, *args, **kwargs):
+        frequencias = Frequencia.objects.all()
+        return render(request, 'frequencias.html', {'frequencias': frequencias,})
 
-def lista_cidades(request):
+class OcorrenciasView(View):
+    def get(self, request, *args, **kwargs):
+        ocorrencias = Ocorrencia.objects.all()
+        return render(request, 'ocorrencias.html', {'ocorrencias': ocorrencias,})
 
-    context = {'cidades': Cidade.objects.all()}
-    return render(request, 'cidades.html', context)
+class DeleteCursoView(View):
+    def get(self, request, id, *args, **kwargs):
+        curso = get_object_or_404(Curso, id=id)
+        curso.delete()
+        messages.success(request, 'Curso excluído com sucesso!')
+        return redirect('index')
 
-def lista_ocorrencias(request):
-  
-    context = {'ocorrencias': Ocorrencia.objects.all()}
-    return render(request, 'ocorrencias.html', context)
+class EditarCursoView(View):
+    def get(self, request, id, *args, **kwargs):
+        curso = get_object_or_404(Curso, id=id)
+        return render(request, 'editar_curso.html', {'curso': curso})
+# Create your views here.
